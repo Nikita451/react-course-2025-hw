@@ -1,0 +1,22 @@
+.restaurant {
+  border: 1px solid #4f4f4f;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 5px;
+  background: #f4f4f4;
+
+  h2 {
+    color: #4f4f4f;
+    text-align: center;
+  }
+
+  h3 {
+    color: #4f4f4f;
+    text-align: center;
+    font-style: italic;
+  }
+
+  ul li {
+    list-style-type: none;
+  }
+}
