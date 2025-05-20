@@ -1,13 +1,13 @@
 import Restaurants from "./components/Restaurants";
 import { restaurants } from "./data/mock";
 import "./app.scss";
+import { Layout } from "./components/Layout";
 
 function App() {
   return (
-    <>
-      <h1>Доставка из лучших ресторанов Москвы</h1>
+    <Layout>
       <Restaurants restaurants={restaurants} />
-    </>
+    </Layout>
   );
 }
 

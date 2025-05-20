@@ -20,3 +20,24 @@
     list-style-type: none;
   }
 }
+
+.tabs {
+  display: flex;
+
+  li {
+    list-style-type: none;
+    padding: 5px;
+    font-size: 1.5rem;
+    color: rgb(40, 40, 226);
+    font-style: italic;
+
+    &:hover {
+      color: gray;
+      cursor: pointer;
+    }
+
+    &.active {
+      color: gray;
+    }
+  }
+}

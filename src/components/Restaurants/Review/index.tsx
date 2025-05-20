@@ -5,7 +5,7 @@ export interface Props {
   reviews: Review[];
 }
 
-function Review({ reviews }: Props) {
+function RestaurantReview({ reviews }: Props) {
   return (
     <>
       <h3>Отзывы</h3>
@@ -18,4 +18,4 @@ function Review({ reviews }: Props) {
   );
 }
 
-export default memo(Review);
+export default memo(RestaurantReview);

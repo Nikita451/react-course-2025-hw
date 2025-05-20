@@ -1,4 +1,5 @@
-import { memo } from "react";
+import { memo, useState } from "react";
+import classNames from "classnames";
 import type { Restaurant } from "../../data/types";
 import Menu from "./Menu";
 import Review from "./Review";
@@ -8,18 +9,38 @@ interface Props {
   restaurants: Restaurant[];
 }
 
-function Restaurant({ restaurants }: Props) {
+function RestaurantView({ restaurants }: Props) {
+  const [activeTab, setActiveTab] = useState<number>(0);
+  const { name: restaurantName, menu, reviews } = restaurants[activeTab];
+
+  function onSetActiveTab(currentTab: number) {
+    if (currentTab === activeTab) {
+      return;
+    }
+    setActiveTab(currentTab);
+  }
+
   return (
     <>
-      {restaurants.map(({ name, id, menu, reviews }) => (
-        <div className={styles.restaurant} key={id}>
-          <h2>{name}</h2>
-          <Menu menu={menu} />
-          <Review reviews={reviews} />
-        </div>
-      ))}
+      <ul className={styles.tabs}>
+        {restaurants.map(({ name, id }, index) => (
+          <li
+            className={classNames({ [styles.active]: index === activeTab })}
+            onClick={() => onSetActiveTab(index)}
+            key={id}
+          >
+            {name}
+          </li>
+        ))}
+      </ul>
+
+      <div className={styles.restaurant}>
+        <h2>{restaurantName}</h2>
+        <Menu menu={menu} />
+        <Review reviews={reviews} />
+      </div>
     </>
   );
 }
 
-export default memo(Restaurant);
+export default memo(RestaurantView);

@@ -1,21 +1,29 @@
 import { memo } from "react";
 import type { Menu } from "../../../data/types";
+import Counter from "../../Counter";
+import styles from "./menu.module.scss";
 
 export interface Props {
   menu: Menu[];
 }
 
-function Menu({ menu }: Props) {
+const MIN_COUNT: number = 0;
+const MAX_COUNT: number = 5;
+
+function RestaurantMenu({ menu }: Props) {
   return (
     <>
       <h3>Меню</h3>
       <ul>
         {menu.map(({ name, id }) => (
-          <li key={id}>{name}</li>
+          <div key={id} className={styles.menu}>
+            <li>{name}</li>
+            <Counter min={MIN_COUNT} max={MAX_COUNT} />
+          </div>
         ))}
       </ul>
     </>
   );
 }
 
-export default memo(Menu);
+export default memo(RestaurantMenu);
