@@ -1,4 +1,4 @@
-import Restaurants from "./components/Restaurants";
+import { RestaurantList } from "./components/Restaurants";
 import { restaurants } from "./data/mock";
 import "./app.scss";
 import { Layout } from "./components/Layout";
@@ -6,7 +6,7 @@ import { Layout } from "./components/Layout";
 function App() {
   return (
     <Layout>
-      <Restaurants restaurants={restaurants} />
+      <RestaurantList restaurants={restaurants} />
     </Layout>
   );
 }

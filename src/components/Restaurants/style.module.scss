@@ -31,12 +31,12 @@
     color: rgb(40, 40, 226);
     font-style: italic;
 
-    &:hover {
+    &:hover button {
       color: gray;
       cursor: pointer;
     }
 
-    &.active {
+    &.active button {
       color: gray;
     }
   }

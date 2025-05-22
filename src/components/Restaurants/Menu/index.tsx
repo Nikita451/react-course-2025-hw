@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, type FC } from "react";
 import type { Menu } from "../../../data/types";
 import Counter from "../../Counter";
 import styles from "./menu.module.scss";
@@ -10,7 +10,7 @@ export interface Props {
 const MIN_COUNT: number = 0;
 const MAX_COUNT: number = 5;
 
-function RestaurantMenu({ menu }: Props) {
+export const RestaurantMenu: FC<Props> = ({ menu }) => {
   return (
     <>
       <h3>Меню</h3>
@@ -24,6 +24,4 @@ function RestaurantMenu({ menu }: Props) {
       </ul>
     </>
   );
-}
-
-export default memo(RestaurantMenu);
+};

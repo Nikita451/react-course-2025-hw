@@ -1,11 +1,11 @@
-import { memo } from "react";
+import type { FC } from "react";
 import type { Review } from "../../../data/types";
 
 export interface Props {
   reviews: Review[];
 }
 
-function RestaurantReview({ reviews }: Props) {
+export const RestaurantReview: FC<Props> = ({ reviews }) => {
   return (
     <>
       <h3>Отзывы</h3>
@@ -16,6 +16,4 @@ function RestaurantReview({ reviews }: Props) {
       </ul>
     </>
   );
-}
-
-export default memo(RestaurantReview);
+};

@@ -1,19 +1,21 @@
-import { memo, useState } from "react";
+import { memo, useState, type FC } from "react";
 import classNames from "classnames";
 import type { Restaurant } from "../../data/types";
-import Menu from "./Menu";
-import Review from "./Review";
 import styles from "./style.module.scss";
+import { RestaurantView } from "./Restaurant";
 
 interface Props {
   restaurants: Restaurant[];
 }
 
-function RestaurantView({ restaurants }: Props) {
-  const [activeTab, setActiveTab] = useState<number>(0);
-  const { name: restaurantName, menu, reviews } = restaurants[activeTab];
+export const RestaurantList: FC<Props> = ({ restaurants }) => {
+  const [activeTab, setActiveTab] = useState<string>(restaurants[0].id);
+  const activeRestaurant = restaurants.find((r) => r.id === activeTab);
+  if (!activeRestaurant) {
+    return null;
+  }
 
-  function onSetActiveTab(currentTab: number) {
+  function onSetActiveTab(currentTab: string) {
     if (currentTab === activeTab) {
       return;
     }
@@ -23,24 +25,16 @@ function RestaurantView({ restaurants }: Props) {
   return (
     <>
       <ul className={styles.tabs}>
-        {restaurants.map(({ name, id }, index) => (
+        {restaurants.map(({ name, id }) => (
           <li
-            className={classNames({ [styles.active]: index === activeTab })}
-            onClick={() => onSetActiveTab(index)}
+            className={classNames({ [styles.active]: id === activeTab })}
             key={id}
           >
-            {name}
+            <button onClick={() => onSetActiveTab(id)}>{name}</button>
           </li>
         ))}
       </ul>
-
-      <div className={styles.restaurant}>
-        <h2>{restaurantName}</h2>
-        <Menu menu={menu} />
-        <Review reviews={reviews} />
-      </div>
+      <RestaurantView restaurant={activeRestaurant} />
     </>
   );
-}
-
-export default memo(RestaurantView);
+};
