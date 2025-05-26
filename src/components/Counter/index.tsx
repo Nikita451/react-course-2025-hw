@@ -1,4 +1,3 @@
-import { memo } from "react";
 import { useCounter } from "./useCounter";
 import styles from "./counter.style.module.scss";
 
@@ -23,4 +22,4 @@ function Counter({ min, max }: IProps) {
   );
 }
 
-export default memo(Counter);
+export default Counter;

@@ -1,4 +1,4 @@
-import { memo, type FC } from "react";
+import { type FC } from "react";
 import type { Menu } from "../../../data/types";
 import Counter from "../../Counter";
 import styles from "./menu.module.scss";

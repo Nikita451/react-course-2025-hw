@@ -1,4 +1,4 @@
-import { memo, useState, type FC } from "react";
+import { useState, type FC } from "react";
 import classNames from "classnames";
 import type { Restaurant } from "../../data/types";
 import styles from "./style.module.scss";
@@ -9,17 +9,21 @@ interface Props {
 }
 
 export const RestaurantList: FC<Props> = ({ restaurants }) => {
-  const [activeTab, setActiveTab] = useState<string>(restaurants[0].id);
-  const activeRestaurant = restaurants.find((r) => r.id === activeTab);
+  const [activeRestaurantId, setActiveRestaurantId] = useState<string>(
+    restaurants[0].id
+  );
+  const activeRestaurant = restaurants.find(
+    ({ id }) => id === activeRestaurantId
+  );
   if (!activeRestaurant) {
     return null;
   }
 
   function onSetActiveTab(currentTab: string) {
-    if (currentTab === activeTab) {
+    if (currentTab === activeRestaurantId) {
       return;
     }
-    setActiveTab(currentTab);
+    setActiveRestaurantId(currentTab);
   }
 
   return (
@@ -27,7 +31,9 @@ export const RestaurantList: FC<Props> = ({ restaurants }) => {
       <ul className={styles.tabs}>
         {restaurants.map(({ name, id }) => (
           <li
-            className={classNames({ [styles.active]: id === activeTab })}
+            className={classNames({
+              [styles.active]: id === activeRestaurantId,
+            })}
             key={id}
           >
             <button onClick={() => onSetActiveTab(id)}>{name}</button>
