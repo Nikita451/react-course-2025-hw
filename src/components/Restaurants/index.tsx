@@ -1,25 +1,46 @@
-import { memo } from "react";
+import { useState, type FC } from "react";
+import classNames from "classnames";
 import type { Restaurant } from "../../data/types";
-import Menu from "./Menu";
-import Review from "./Review";
 import styles from "./style.module.scss";
+import { RestaurantView } from "./Restaurant";
 
 interface Props {
   restaurants: Restaurant[];
 }
 
-function Restaurant({ restaurants }: Props) {
+export const RestaurantList: FC<Props> = ({ restaurants }) => {
+  const [activeRestaurantId, setActiveRestaurantId] = useState<string>(
+    restaurants[0].id
+  );
+  const activeRestaurant = restaurants.find(
+    ({ id }) => id === activeRestaurantId
+  );
+  if (!activeRestaurant) {
+    return null;
+  }
+
+  function onSetActiveTab(currentTab: string) {
+    if (currentTab === activeRestaurantId) {
+      return;
+    }
+    setActiveRestaurantId(currentTab);
+  }
+
   return (
     <>
-      {restaurants.map(({ name, id, menu, reviews }) => (
-        <div className={styles.restaurant} key={id}>
-          <h2>{name}</h2>
-          <Menu menu={menu} />
-          <Review reviews={reviews} />
-        </div>
-      ))}
+      <ul className={styles.tabs}>
+        {restaurants.map(({ name, id }) => (
+          <li
+            className={classNames({
+              [styles.active]: id === activeRestaurantId,
+            })}
+            key={id}
+          >
+            <button onClick={() => onSetActiveTab(id)}>{name}</button>
+          </li>
+        ))}
+      </ul>
+      <RestaurantView restaurant={activeRestaurant} />
     </>
   );
-}
-
-export default memo(Restaurant);
+};
