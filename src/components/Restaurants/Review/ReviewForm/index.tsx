@@ -27,10 +27,6 @@ export const ReviewForm = ({ onCreateReview }: Props) => {
     onClear();
   }
 
-  function onReset() {
-    onClear();
-  }
-
   return (
     <div className={styles.form}>
       <form onSubmit={onSubmit}>
@@ -65,7 +61,7 @@ export const ReviewForm = ({ onCreateReview }: Props) => {
         </div>
         <div>
           <button type="submit">Отправить</button>
-          <button onClick={onReset} type="button">
+          <button onClick={() => onClear()} type="button">
             Очистить
           </button>
         </div>
