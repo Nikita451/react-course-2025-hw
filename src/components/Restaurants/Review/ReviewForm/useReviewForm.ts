@@ -15,30 +15,31 @@ const INIT_STATE: ReviewCreating = Object.freeze({
   rating: MAX_RATING,
 });
 
-interface PayloadProps {
-  type: string;
-  value?: string | number;
-}
+type ReviewFormAction =
+  | { type: "name" | "text"; value: string }
+  | { type: "rating"; value: number }
+  | { type: "clear" };
 
-const CHANGE_NAME = "CHANGE_NAME";
-const CHANGE_TEXT = "CHANGE_TEXT";
-const CHANGE_RATING = "CHANGE_RATING";
-const CLEAR_FORM = "CLEAR_FORM";
+const CHANGE_NAME = "name";
+const CHANGE_TEXT = "text";
+const CHANGE_RATING = "rating";
+const CLEAR_FORM = "clear";
 
 function formReviewReducer(
   initState = INIT_STATE,
-  actions: PayloadProps
+  actions: ReviewFormAction
 ): ReviewCreating {
   switch (actions.type) {
     case CHANGE_NAME:
-      return { ...initState, name: actions.value as string };
+      return { ...initState, name: actions.value };
     case CHANGE_TEXT:
-      return { ...initState, text: actions.value as string };
+      return { ...initState, text: actions.value };
     case CHANGE_RATING:
-      return { ...initState, rating: actions.value as number };
+      return { ...initState, rating: actions.value };
     case CLEAR_FORM:
-    default:
       return INIT_STATE;
+    default:
+      return initState;
   }
 }
 
