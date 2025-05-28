@@ -40,7 +40,7 @@ export const RestaurantList: FC<Props> = ({ restaurants }) => {
           </li>
         ))}
       </ul>
-      <RestaurantView restaurant={activeRestaurant} />
+      <RestaurantView restaurant={activeRestaurant} key={activeRestaurant.id} />
     </>
   );
 };

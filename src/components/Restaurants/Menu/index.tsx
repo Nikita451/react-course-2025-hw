@@ -11,6 +11,9 @@ const MIN_COUNT: number = 0;
 const MAX_COUNT: number = 5;
 
 export const RestaurantMenu: FC<Props> = ({ menu }) => {
+  if (!menu.length) {
+    return <div>Меню данного ресторана в процессе подготовки</div>;
+  }
   return (
     <>
       <h3>Меню</h3>
