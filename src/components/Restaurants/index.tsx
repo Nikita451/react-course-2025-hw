@@ -3,6 +3,7 @@ import classNames from "classnames";
 import type { Restaurant } from "../../data/types";
 import styles from "./style.module.scss";
 import { RestaurantView } from "./Restaurant";
+import { Button } from "../Button";
 
 interface Props {
   restaurants: Restaurant[];
@@ -36,7 +37,7 @@ export const RestaurantList: FC<Props> = ({ restaurants }) => {
             })}
             key={id}
           >
-            <button onClick={() => onSetActiveTab(id)}>{name}</button>
+            <Button text={name} onClick={() => onSetActiveTab(id)} />
           </li>
         ))}
       </ul>

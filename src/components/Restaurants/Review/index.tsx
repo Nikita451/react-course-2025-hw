@@ -1,7 +1,8 @@
-import type { FC } from "react";
+import { useContext, type FC } from "react";
 import type { Review } from "../../../data/types";
 import { ReviewForm } from "./ReviewForm";
 import type { ReviewHandler } from "./ReviewForm/useReviewForm";
+import { AuthContext } from "../../../context/AuthContext/authContext";
 
 export interface Props {
   reviews: Review[];
@@ -9,6 +10,7 @@ export interface Props {
 }
 
 export const RestaurantReview: FC<Props> = ({ reviews, onCreateReview }) => {
+  const { user } = useContext(AuthContext);
   if (!reviews?.length) {
     <div>Отзывов на данный ресторан пока нет</div>;
   }
@@ -21,7 +23,7 @@ export const RestaurantReview: FC<Props> = ({ reviews, onCreateReview }) => {
           <li key={id}>{text}</li>
         ))}
       </ul>
-      <ReviewForm onCreateReview={onCreateReview} />
+      {user && <ReviewForm onCreateReview={onCreateReview} />}
     </>
   );
 };
