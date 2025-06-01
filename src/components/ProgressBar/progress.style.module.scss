@@ -1,0 +1,14 @@
+.processWrapper {
+  background: #fff;
+  height: 10px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+
+  .progress {
+    background: red;
+    height: 100%;
+    width: 0;
+  }
+}

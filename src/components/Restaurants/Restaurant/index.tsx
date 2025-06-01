@@ -5,6 +5,7 @@ import { RestaurantMenu } from "../Menu";
 import { RestaurantReview } from "../Review";
 import styles from "../style.module.scss";
 import type { ReviewCreating } from "../Review/ReviewForm/useReviewForm";
+import { ProgressBar } from "../../ProgressBar";
 
 interface Props {
   restaurant: Restaurant;
@@ -27,8 +28,38 @@ export const RestaurantView: FC<Props> = ({ restaurant }) => {
 
   return (
     <div className={styles.restaurant}>
+      <ProgressBar />
+
       <h2>{restaurantName}</h2>
       <RestaurantMenu menu={menu} />
+      <RestaurantReview
+        reviews={dynamicRevies}
+        onCreateReview={onCreateReview}
+      />
+      <RestaurantReview
+        reviews={dynamicRevies}
+        onCreateReview={onCreateReview}
+      />
+      <RestaurantReview
+        reviews={dynamicRevies}
+        onCreateReview={onCreateReview}
+      />
+      <RestaurantReview
+        reviews={dynamicRevies}
+        onCreateReview={onCreateReview}
+      />
+      <RestaurantReview
+        reviews={dynamicRevies}
+        onCreateReview={onCreateReview}
+      />
+      <RestaurantReview
+        reviews={dynamicRevies}
+        onCreateReview={onCreateReview}
+      />
+      <RestaurantReview
+        reviews={dynamicRevies}
+        onCreateReview={onCreateReview}
+      />
       <RestaurantReview
         reviews={dynamicRevies}
         onCreateReview={onCreateReview}
