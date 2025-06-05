@@ -1,47 +1,34 @@
 import { useState, type FC } from "react";
-import classNames from "classnames";
-import type { Restaurant } from "../../data/types";
 import styles from "./style.module.scss";
 import { RestaurantView } from "./Restaurant";
-import { Button } from "../Button";
+import { TabView } from "./Tab/Tab";
+import type { RootState } from "../../redux/store";
+import { useSelector } from "react-redux";
 
-interface Props {
-  restaurants: Restaurant[];
-}
+export const RestaurantList: FC = () => {
+  const restaurantIds = useSelector(
+    (state: RootState) => state.restaurants.ids
+  );
 
-export const RestaurantList: FC<Props> = ({ restaurants }) => {
   const [activeRestaurantId, setActiveRestaurantId] = useState<string>(
-    restaurants[0].id
+    restaurantIds[0]
   );
-  const activeRestaurant = restaurants.find(
-    ({ id }) => id === activeRestaurantId
-  );
-  if (!activeRestaurant) {
-    return null;
-  }
 
-  function onSetActiveTab(currentTab: string) {
-    if (currentTab === activeRestaurantId) {
+  function onSetActiveTab(currentRestaurantId: string) {
+    if (currentRestaurantId === activeRestaurantId) {
       return;
     }
-    setActiveRestaurantId(currentTab);
+    setActiveRestaurantId(currentRestaurantId);
   }
 
   return (
     <>
       <ul className={styles.tabs}>
-        {restaurants.map(({ name, id }) => (
-          <li
-            className={classNames({
-              [styles.active]: id === activeRestaurantId,
-            })}
-            key={id}
-          >
-            <Button text={name} onClick={() => onSetActiveTab(id)} />
-          </li>
+        {restaurantIds.map((id) => (
+          <TabView key={id} id={id} onSetActiveTab={onSetActiveTab} />
         ))}
       </ul>
-      <RestaurantView restaurant={activeRestaurant} key={activeRestaurant.id} />
+      <RestaurantView id={activeRestaurantId} key={activeRestaurantId} />
     </>
   );
 };

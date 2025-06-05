@@ -4,7 +4,15 @@ import { AuthContext } from "./authContext";
 export const AuthContextProvider: FC<{ children: JSX.Element }> = ({
   children,
 }) => {
-  const [user, setUser] = useState<string>("");
+  const [user, setUser] = useState({ isAuthorized: false, name: "" });
 
-  return <AuthContext value={{ user, setUser }}>{children}</AuthContext>;
+  function toggleAuth() {
+    setUser((user) => {
+      return user.isAuthorized
+        ? { isAuthorized: false, name: "" }
+        : { isAuthorized: true, name: "Vasya" };
+    });
+  }
+
+  return <AuthContext value={{ user, toggleAuth }}>{children}</AuthContext>;
 };

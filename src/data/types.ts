@@ -18,3 +18,22 @@ export interface Review {
   text: string;
   rating: number;
 }
+
+export interface RestaurantNormalized {
+  id: string;
+  name: string;
+  menu: string[];
+  reviews: string[];
+}
+
+export interface ReviewNormalized {
+  id: string;
+  userId: string;
+  text: string;
+  rating: number;
+}
+
+export interface User {
+  id: string;
+  name: string;
+}

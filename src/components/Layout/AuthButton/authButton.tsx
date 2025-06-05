@@ -1,21 +1,15 @@
 import { useContext } from "react";
-import {
-  AuthContext,
-  TEST_USER,
-} from "../../../context/AuthContext/authContext";
+import { AuthContext } from "../../../context/AuthContext/authContext";
 import { Button } from "../../Button";
 
 export function AuthButton() {
-  const { user, setUser } = useContext(AuthContext);
-
-  function handleChangeUser() {
-    setUser(!user ? TEST_USER : "");
-  }
+  const { user, toggleAuth } = useContext(AuthContext);
+  const { isAuthorized, name: userName } = user;
 
   return (
     <Button
-      text={user ? `Выйти (${user})` : "Войти"}
-      onClick={handleChangeUser}
+      text={isAuthorized ? `Выйти (${userName})` : "Войти"}
+      onClick={toggleAuth}
     />
   );
 }
