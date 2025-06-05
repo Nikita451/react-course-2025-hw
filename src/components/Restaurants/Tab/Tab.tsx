@@ -18,7 +18,6 @@ export const TabView: FC<Props> = ({ id, onSetActiveTab }) => {
       className={classNames({
         [styles.active]: id === id,
       })}
-      key={id}
     >
       <Button text={name} onClick={() => onSetActiveTab(id)} />
     </li>

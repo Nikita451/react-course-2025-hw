@@ -21,7 +21,13 @@ const initialState: MenuState = {
 export const menuSlice = createSlice({
   name: "menu",
   initialState,
+  selectors: {
+    getMenuIds: (state: MenuState) => state.ids,
+    getMenuById: (state, id: string) => state.entities[id],
+  },
   reducers: {},
 });
+
+export const { getMenuById, getMenuIds } = menuSlice.selectors;
 
 export default menuSlice.reducer;

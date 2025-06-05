@@ -6,16 +6,15 @@ import type { ReviewCreating } from "../Review/ReviewForm/useReviewForm";
 import { ProgressBar } from "../../ProgressBar";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/store";
+import { getRestaurantById } from "../../../redux/slices/restaurantSlice";
 
 interface Props {
   id: string;
 }
 
 export const RestaurantView: FC<Props> = ({ id }) => {
-  // При создании selector-а внутри slice рукагется TS, что глобальный тип стейна не соответствует локальному.
-  // Сделал как в документации:
-  const restaurant = useSelector(
-    (state: RootState) => state.restaurants.entities[id]
+  const restaurant = useSelector((state: RootState) =>
+    getRestaurantById(state, id)
   );
   const { name: restaurantName, menu, reviews: reviewIds } = restaurant;
 

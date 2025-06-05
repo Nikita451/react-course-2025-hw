@@ -4,10 +4,11 @@ import { RestaurantView } from "./Restaurant";
 import { TabView } from "./Tab/Tab";
 import type { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
+import { getRestaurantIds } from "../../redux/slices/restaurantSlice";
 
 export const RestaurantList: FC = () => {
-  const restaurantIds = useSelector(
-    (state: RootState) => state.restaurants.ids
+  const restaurantIds = useSelector((state: RootState) =>
+    getRestaurantIds(state)
   );
 
   const [activeRestaurantId, setActiveRestaurantId] = useState<string>(

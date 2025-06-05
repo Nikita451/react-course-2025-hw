@@ -4,6 +4,7 @@ import Counter from "../../Counter";
 import type { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
 import { AuthContext } from "../../../context/AuthContext/authContext";
+import { getMenuById } from "../../../redux/slices/menuSlice";
 
 interface Props {
   id: string;
@@ -16,7 +17,7 @@ export const MenuView: FC<Props> = ({ id }) => {
   const {
     user: { isAuthorized },
   } = useContext(AuthContext);
-  const menu = useSelector((state: RootState) => state.menu.entities[id]);
+  const menu = useSelector((state: RootState) => getMenuById(state, id));
   const { name } = menu;
 
   return (

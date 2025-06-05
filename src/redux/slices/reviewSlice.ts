@@ -23,9 +23,11 @@ export const reviewSlice = createSlice({
   initialState,
   reducers: {},
   selectors: {
-    getRestaurantIds: (state: ReviewState) => state.ids,
-    getRestaurantById: (state, id: string) => state.entities[id],
+    getReviewIds: (state: ReviewState) => state.ids,
+    getReviewById: (state, id: string) => state.entities[id],
   },
 });
+
+export const { getReviewById, getReviewIds } = reviewSlice.selectors;
 
 export default reviewSlice.reducer;
