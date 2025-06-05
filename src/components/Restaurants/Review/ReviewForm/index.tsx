@@ -62,7 +62,7 @@ export const ReviewForm = ({ onCreateReview }: Props) => {
         </div>
         <div>
           <Button type="submit" text="Отправить" />
-          <Button onClick={() => onClear()} type="button" text="Очистить" />
+          <Button onClick={onClear} type="button" text="Очистить" />
         </div>
       </form>
     </div>
