@@ -1,5 +1,7 @@
-import type { JSX } from "react";
+import { type JSX } from "react";
 import styles from "./layout.module.scss";
+import { Footer } from "./Footer/Footer";
+import { Header } from "./Header/header";
 
 export interface IProps {
   children?: JSX.Element;
@@ -8,13 +10,9 @@ export interface IProps {
 export function Layout({ children }: IProps) {
   return (
     <div className={styles.layout}>
-      <header>
-        <h1>Доставка из лучших ресторанов Москвы</h1>
-      </header>
-
+      <Header />
       <section>{children}</section>
-
-      <footer>Powered By React19</footer>
+      <Footer />
     </div>
   );
 }

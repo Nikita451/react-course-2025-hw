@@ -1,5 +1,6 @@
 import type React from "react";
 import styles from "./counter.style.module.scss";
+import { Button } from "../../Button";
 
 export interface Props {
   count: number;
@@ -18,13 +19,9 @@ export const CounterView: React.FC<Props> = ({
 }: Props) => {
   return (
     <div className={styles.counter}>
-      <button disabled={count >= max} onClick={onIncrement}>
-        +
-      </button>
+      <Button disabled={count >= max} onClick={onIncrement} text="+" />
       <span>{count}</span>
-      <button disabled={count <= min} onClick={onDecrement}>
-        -
-      </button>
+      <Button disabled={count <= min} onClick={onDecrement} text="-" />
     </div>
   );
 };

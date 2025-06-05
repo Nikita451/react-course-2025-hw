@@ -1,9 +1,23 @@
 .layout {
   header {
+    display: flex;
+
     h1 {
       color: rgb(131, 131, 222);
       font-style: italic;
       font-size: 1.5rem;
+    }
+
+    .controlPanel {
+      width: 300px;
+      display: flex;
+      margin-top: 5px;
+
+      button {
+        padding: 5px;
+        margin-left: 10px;
+        height: 30px;
+      }
     }
   }
 }

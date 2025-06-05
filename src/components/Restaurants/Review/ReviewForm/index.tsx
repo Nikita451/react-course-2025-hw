@@ -2,6 +2,7 @@ import { type FormEvent } from "react";
 import { useReviewForm, type ReviewHandler } from "./useReviewForm";
 import { CounterView } from "../../../Counter/ConterView";
 import styles from "./reviewForm.module.scss";
+import { Button } from "../../../Button";
 
 export interface Props {
   onCreateReview: ReviewHandler;
@@ -60,10 +61,8 @@ export const ReviewForm = ({ onCreateReview }: Props) => {
           />
         </div>
         <div>
-          <button type="submit">Отправить</button>
-          <button onClick={() => onClear()} type="button">
-            Очистить
-          </button>
+          <Button type="submit" text="Отправить" />
+          <Button onClick={onClear} type="button" text="Очистить" />
         </div>
       </form>
     </div>
