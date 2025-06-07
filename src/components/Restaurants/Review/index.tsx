@@ -1,17 +1,19 @@
 import { useContext, type FC } from "react";
-import type { Review } from "../../../data/types";
 import { ReviewForm } from "./ReviewForm";
 import type { ReviewHandler } from "./ReviewForm/useReviewForm";
 import { AuthContext } from "../../../context/AuthContext/authContext";
+import { ReviewView } from "./Review";
 
 export interface Props {
-  reviews: Review[];
+  ids: string[];
   onCreateReview: ReviewHandler;
 }
 
-export const RestaurantReview: FC<Props> = ({ reviews, onCreateReview }) => {
-  const { user } = useContext(AuthContext);
-  if (!reviews?.length) {
+export const RestaurantReview: FC<Props> = ({ ids, onCreateReview }) => {
+  const {
+    user: { isAuthorized },
+  } = useContext(AuthContext);
+  if (!ids?.length) {
     <div>Отзывов на данный ресторан пока нет</div>;
   }
 
@@ -19,11 +21,11 @@ export const RestaurantReview: FC<Props> = ({ reviews, onCreateReview }) => {
     <>
       <h3>Отзывы</h3>
       <ul>
-        {reviews.map(({ text, id }) => (
-          <li key={id}>{text}</li>
+        {ids.map((id) => (
+          <ReviewView key={id} id={id} />
         ))}
       </ul>
-      {user && <ReviewForm onCreateReview={onCreateReview} />}
+      {isAuthorized && <ReviewForm onCreateReview={onCreateReview} />}
     </>
   );
 };

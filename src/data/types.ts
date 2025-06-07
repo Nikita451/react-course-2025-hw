@@ -1,11 +1,11 @@
 export interface Restaurant {
   id: string;
   name: string;
-  menu: Menu[];
+  dishes: Dish[];
   reviews: Review[];
 }
 
-export interface Menu {
+export interface Dish {
   id: string;
   name: string;
   price: number;
@@ -17,4 +17,23 @@ export interface Review {
   user: string;
   text: string;
   rating: number;
+}
+
+export interface RestaurantNormalized {
+  id: string;
+  name: string;
+  dishes: string[];
+  reviews: string[];
+}
+
+export interface ReviewNormalized {
+  id: string;
+  userId: string;
+  text: string;
+  rating: number;
+}
+
+export interface User {
+  id: string;
+  name: string;
 }

@@ -4,7 +4,7 @@ export const restaurants: Restaurant[] = [
   {
     id: "a757a0e9-03c1-4a2a-b384-8ac21dbe2fb2",
     name: "Dishoom",
-    menu: [
+    dishes: [
       {
         id: "d75f762a-eadd-49be-8918-ed0daa8dd024",
         name: "Chicken tikka masala",
@@ -42,7 +42,7 @@ export const restaurants: Restaurant[] = [
   {
     id: "bb8afbec-2fec-491f-93e9-7f13950dd80b",
     name: "Homeslice",
-    menu: [
+    dishes: [
       {
         id: "25402233-0095-49ea-9939-1e67ed89ffb9",
         name: "Margarita",
@@ -80,7 +80,7 @@ export const restaurants: Restaurant[] = [
   {
     id: "982bfbce-c5e0-41a0-9f99-d5c20ecee49d",
     name: "Fabrique",
-    menu: [
+    dishes: [
       {
         id: "08c9ffa0-d003-4310-9e15-20978743296e",
         name: "Cinnamon buns",
@@ -112,7 +112,7 @@ export const restaurants: Restaurant[] = [
   {
     id: "d9241927-09e1-44f3-8986-a76346869037",
     name: "Flat Iron",
-    menu: [
+    dishes: [
       {
         id: "6c02c2ce-b868-4191-b4a7-8686429f4bac",
         name: "Flat Iron Steak",

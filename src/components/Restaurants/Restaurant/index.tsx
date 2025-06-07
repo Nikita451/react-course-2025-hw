@@ -1,29 +1,29 @@
-import { useState, type FC } from "react";
-import { v4 as uuidv4 } from "uuid";
-import type { Restaurant } from "../../../data/types";
-import { RestaurantMenu } from "../Menu";
+import { type FC } from "react";
+import { RestaurantDishes } from "../Dish";
 import { RestaurantReview } from "../Review";
 import styles from "../style.module.scss";
 import type { ReviewCreating } from "../Review/ReviewForm/useReviewForm";
 import { ProgressBar } from "../../ProgressBar";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../redux/store";
+import { getRestaurantById } from "../../../redux/slices/restaurantSlice";
 
 interface Props {
-  restaurant: Restaurant;
+  id: string;
 }
 
-export const RestaurantView: FC<Props> = ({ restaurant }) => {
-  const { name: restaurantName, menu, reviews } = restaurant;
+export const RestaurantView: FC<Props> = ({ id }) => {
+  const restaurant = useSelector((state: RootState) =>
+    getRestaurantById(state, id)
+  );
+  const {
+    name: restaurantName,
+    dishes: dishedIds,
+    reviews: reviewIds,
+  } = restaurant;
 
-  /*
-  Так никто не делает, но в рамках учебного проекта при работе со статическим объектом ... :)
-  */
-  const [dynamicRevies, setReviews] = useState(reviews);
   function onCreateReview({ name, text, rating }: ReviewCreating) {
-    const newReviews = [
-      ...dynamicRevies,
-      { user: name, text: text, rating, id: uuidv4() },
-    ];
-    setReviews(newReviews);
+    console.log("new review:", name, text, rating);
   }
 
   return (
@@ -31,39 +31,8 @@ export const RestaurantView: FC<Props> = ({ restaurant }) => {
       <ProgressBar />
 
       <h2>{restaurantName}</h2>
-      <RestaurantMenu menu={menu} />
-      <RestaurantReview
-        reviews={dynamicRevies}
-        onCreateReview={onCreateReview}
-      />
-      <RestaurantReview
-        reviews={dynamicRevies}
-        onCreateReview={onCreateReview}
-      />
-      <RestaurantReview
-        reviews={dynamicRevies}
-        onCreateReview={onCreateReview}
-      />
-      <RestaurantReview
-        reviews={dynamicRevies}
-        onCreateReview={onCreateReview}
-      />
-      <RestaurantReview
-        reviews={dynamicRevies}
-        onCreateReview={onCreateReview}
-      />
-      <RestaurantReview
-        reviews={dynamicRevies}
-        onCreateReview={onCreateReview}
-      />
-      <RestaurantReview
-        reviews={dynamicRevies}
-        onCreateReview={onCreateReview}
-      />
-      <RestaurantReview
-        reviews={dynamicRevies}
-        onCreateReview={onCreateReview}
-      />
+      <RestaurantDishes ids={dishedIds} />
+      <RestaurantReview ids={reviewIds} onCreateReview={onCreateReview} />
     </div>
   );
 };

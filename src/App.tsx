@@ -1,19 +1,22 @@
 import { RestaurantList } from "./components/Restaurants";
-import { restaurants } from "./data/mock";
 import "./app.scss";
 import { Layout } from "./components/Layout";
 import { ThemeContextProvider } from "./context/ThemeContext/themeContextProvider";
 import { AuthContextProvider } from "./context/AuthContext/AuthContextProvider";
+import { Provider } from "react-redux";
+import { store } from "./redux/store";
 
 function App() {
   return (
-    <AuthContextProvider>
-      <ThemeContextProvider>
-        <Layout>
-          <RestaurantList restaurants={restaurants} />
-        </Layout>
-      </ThemeContextProvider>
-    </AuthContextProvider>
+    <Provider store={store}>
+      <AuthContextProvider>
+        <ThemeContextProvider>
+          <Layout>
+            <RestaurantList />
+          </Layout>
+        </ThemeContextProvider>
+      </AuthContextProvider>
+    </Provider>
   );
 }
 
