@@ -1,11 +1,11 @@
 import { type FC } from "react";
-import { MenuView } from "./Menu";
+import { DishView } from "./DishView";
 
 export interface Props {
   ids: string[];
 }
 
-export const RestaurantMenu: FC<Props> = ({ ids }) => {
+export const RestaurantDishes: FC<Props> = ({ ids }) => {
   if (!ids.length) {
     return <div>Меню данного ресторана в процессе подготовки</div>;
   }
@@ -15,7 +15,7 @@ export const RestaurantMenu: FC<Props> = ({ ids }) => {
       <h3>Меню</h3>
       <ul>
         {ids.map((id) => (
-          <MenuView key={id} id={id} />
+          <DishView key={id} id={id} />
         ))}
       </ul>
     </>

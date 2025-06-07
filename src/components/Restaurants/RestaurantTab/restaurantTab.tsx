@@ -10,7 +10,7 @@ export interface Props {
   onSetActiveTab: (id: string) => void;
 }
 
-export const TabView: FC<Props> = ({ id, onSetActiveTab }) => {
+export const RestaurantTabView: FC<Props> = ({ id, onSetActiveTab }) => {
   const { name } = useSelector((state: RootState) =>
     getRestaurantById(state, id)
   );

@@ -1,7 +1,7 @@
 import { useState, type FC } from "react";
 import styles from "./style.module.scss";
 import { RestaurantView } from "./Restaurant";
-import { TabView } from "./Tab/Tab";
+import { RestaurantTabView } from "./RestaurantTab/restaurantTab";
 import type { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
 import { getRestaurantIds } from "../../redux/slices/restaurantSlice";
@@ -26,7 +26,7 @@ export const RestaurantList: FC = () => {
     <>
       <ul className={styles.tabs}>
         {restaurantIds.map((id) => (
-          <TabView key={id} id={id} onSetActiveTab={onSetActiveTab} />
+          <RestaurantTabView key={id} id={id} onSetActiveTab={onSetActiveTab} />
         ))}
       </ul>
       <RestaurantView id={activeRestaurantId} key={activeRestaurantId} />

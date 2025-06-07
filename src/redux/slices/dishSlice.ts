@@ -1,16 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { Menu } from "../../data/types";
+import type { Dish } from "../../data/types";
 import { normalizedDishes } from "../../data/normalized-mock";
 
-export interface MenuState {
+export interface DishState {
   ids: string[];
-  entities: Record<string, Menu>;
+  entities: Record<string, Dish>;
 }
 
-const initialState: MenuState = {
+const initialState: DishState = {
   ids: normalizedDishes.map(({ id }) => id),
   entities: normalizedDishes.reduce(
-    (allEntities: Record<string, Menu>, currentEntity) => {
+    (allEntities: Record<string, Dish>, currentEntity) => {
       allEntities[currentEntity.id] = currentEntity;
       return allEntities;
     },
@@ -18,16 +18,16 @@ const initialState: MenuState = {
   ),
 };
 
-export const menuSlice = createSlice({
-  name: "menu",
+export const dishSlice = createSlice({
+  name: "dish",
   initialState,
   selectors: {
-    getMenuIds: (state: MenuState) => state.ids,
+    getMenuIds: (state: DishState) => state.ids,
     getMenuById: (state, id: string) => state.entities[id],
   },
   reducers: {},
 });
 
-export const { getMenuById, getMenuIds } = menuSlice.selectors;
+export const { getMenuById, getMenuIds } = dishSlice.selectors;
 
-export default menuSlice.reducer;
+export default dishSlice.reducer;

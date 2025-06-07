@@ -4,7 +4,7 @@ import Counter from "../../Counter";
 import type { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
 import { AuthContext } from "../../../context/AuthContext/authContext";
-import { getMenuById } from "../../../redux/slices/menuSlice";
+import { getMenuById } from "../../../redux/slices/dishSlice";
 
 interface Props {
   id: string;
@@ -13,7 +13,7 @@ interface Props {
 const MIN_COUNT: number = 0;
 const MAX_COUNT: number = 5;
 
-export const MenuView: FC<Props> = ({ id }) => {
+export const DishView: FC<Props> = ({ id }) => {
   const {
     user: { isAuthorized },
   } = useContext(AuthContext);

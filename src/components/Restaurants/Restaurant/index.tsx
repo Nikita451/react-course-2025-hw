@@ -1,5 +1,5 @@
 import { type FC } from "react";
-import { RestaurantMenu } from "../Menu";
+import { RestaurantDishes } from "../Dish";
 import { RestaurantReview } from "../Review";
 import styles from "../style.module.scss";
 import type { ReviewCreating } from "../Review/ReviewForm/useReviewForm";
@@ -16,7 +16,11 @@ export const RestaurantView: FC<Props> = ({ id }) => {
   const restaurant = useSelector((state: RootState) =>
     getRestaurantById(state, id)
   );
-  const { name: restaurantName, menu, reviews: reviewIds } = restaurant;
+  const {
+    name: restaurantName,
+    dishes: dishedIds,
+    reviews: reviewIds,
+  } = restaurant;
 
   function onCreateReview({ name, text, rating }: ReviewCreating) {
     console.log("new review:", name, text, rating);
@@ -27,14 +31,7 @@ export const RestaurantView: FC<Props> = ({ id }) => {
       <ProgressBar />
 
       <h2>{restaurantName}</h2>
-      <RestaurantMenu ids={menu} />
-      <RestaurantReview ids={reviewIds} onCreateReview={onCreateReview} />
-      <RestaurantReview ids={reviewIds} onCreateReview={onCreateReview} />
-      <RestaurantReview ids={reviewIds} onCreateReview={onCreateReview} />
-      <RestaurantReview ids={reviewIds} onCreateReview={onCreateReview} />
-      <RestaurantReview ids={reviewIds} onCreateReview={onCreateReview} />
-      <RestaurantReview ids={reviewIds} onCreateReview={onCreateReview} />
-      <RestaurantReview ids={reviewIds} onCreateReview={onCreateReview} />
+      <RestaurantDishes ids={dishedIds} />
       <RestaurantReview ids={reviewIds} onCreateReview={onCreateReview} />
     </div>
   );
