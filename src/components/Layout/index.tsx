@@ -1,17 +1,13 @@
-import { type JSX } from "react";
 import styles from "./layout.module.scss";
 import { Footer } from "./Footer/Footer";
 import { Header } from "./Header/header";
+import { Outlet } from "react-router";
 
-export interface IProps {
-  children?: JSX.Element;
-}
-
-export function Layout({ children }: IProps) {
+export function Layout() {
   return (
     <div className={styles.layout}>
       <Header />
-      <section>{children}</section>
+      <Outlet />
       <Footer />
     </div>
   );

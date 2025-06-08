@@ -1,19 +1,16 @@
-import { RestaurantList } from "./components/Restaurants";
 import "./app.scss";
-import { Layout } from "./components/Layout";
 import { ThemeContextProvider } from "./context/ThemeContext/themeContextProvider";
 import { AuthContextProvider } from "./context/AuthContext/AuthContextProvider";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { MainRoutes } from "./MainRoutes";
 
 function App() {
   return (
     <Provider store={store}>
       <AuthContextProvider>
         <ThemeContextProvider>
-          <Layout>
-            <RestaurantList />
-          </Layout>
+          <MainRoutes />
         </ThemeContextProvider>
       </AuthContextProvider>
     </Provider>

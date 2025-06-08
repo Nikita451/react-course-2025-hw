@@ -19,7 +19,6 @@ export const RestaurantReview: FC<Props> = ({ ids, onCreateReview }) => {
 
   return (
     <>
-      <h3>Отзывы</h3>
       <ul>
         {ids.map((id) => (
           <ReviewView key={id} id={id} />

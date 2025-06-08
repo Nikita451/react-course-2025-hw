@@ -22,12 +22,13 @@ export const dishSlice = createSlice({
   name: "dish",
   initialState,
   selectors: {
-    getMenuIds: (state: DishState) => state.ids,
-    getMenuById: (state, id: string) => state.entities[id],
+    getDishIds: (state: DishState) => state.ids,
+    getDishById: (state, id: string) => state.entities[id],
+    getDishes: (state) => state.entities,
   },
   reducers: {},
 });
 
-export const { getMenuById, getMenuIds } = dishSlice.selectors;
+export const { getDishById, getDishIds, getDishes } = dishSlice.selectors;
 
 export default dishSlice.reducer;

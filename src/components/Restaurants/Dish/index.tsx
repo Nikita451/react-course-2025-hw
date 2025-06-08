@@ -11,13 +11,10 @@ export const RestaurantDishes: FC<Props> = ({ ids }) => {
   }
 
   return (
-    <>
-      <h3>Меню</h3>
-      <ul>
-        {ids.map((id) => (
-          <DishView key={id} id={id} />
-        ))}
-      </ul>
-    </>
+    <ul>
+      {ids.map((id) => (
+        <DishView key={id} id={id} />
+      ))}
+    </ul>
   );
 };
