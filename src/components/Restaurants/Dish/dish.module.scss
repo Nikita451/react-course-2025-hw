@@ -1,0 +1,16 @@
+.dish {
+  display: flex;
+  gap: 1rem;
+
+  li {
+    width: 200px;
+  }
+}
+
+.active {
+  color: green;
+}
+
+.detailDish {
+  font-size: 1.5rem;
+}

@@ -3,6 +3,7 @@ import { restaurantSlice } from "./slices/restaurantSlice";
 import { dishSlice } from "./slices/dishSlice";
 import { reviewSlice } from "./slices/reviewSlice";
 import { userSlice } from "./slices/userSlice";
+import { basketSlice } from "./slices/basketSlice";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     [dishSlice.name]: dishSlice.reducer,
     [reviewSlice.name]: reviewSlice.reducer,
     [userSlice.name]: userSlice.reducer,
+    [basketSlice.name]: basketSlice.reducer,
   },
 });
 

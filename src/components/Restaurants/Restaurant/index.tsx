@@ -1,12 +1,11 @@
 import { type FC } from "react";
-import { RestaurantDishes } from "../Dish";
-import { RestaurantReview } from "../Review";
 import styles from "../style.module.scss";
-import type { ReviewCreating } from "../Review/ReviewForm/useReviewForm";
 import { ProgressBar } from "../../ProgressBar";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/store";
-import { getRestaurantById } from "../../../redux/slices/restaurantSlice";
+import { selectRestaurantById } from "../../../redux/slices/restaurantSlice";
+import { Outlet } from "react-router";
+import { RestaurantNavLink } from "../../RestaurantNavLink/restNavLink";
 
 interface Props {
   id: string;
@@ -14,25 +13,29 @@ interface Props {
 
 export const RestaurantView: FC<Props> = ({ id }) => {
   const restaurant = useSelector((state: RootState) =>
-    getRestaurantById(state, id)
+    selectRestaurantById(state, id)
   );
-  const {
-    name: restaurantName,
-    dishes: dishedIds,
-    reviews: reviewIds,
-  } = restaurant;
-
-  function onCreateReview({ name, text, rating }: ReviewCreating) {
-    console.log("new review:", name, text, rating);
-  }
+  const { name: restaurantName } = restaurant;
 
   return (
     <div className={styles.restaurant}>
       <ProgressBar />
-
       <h2>{restaurantName}</h2>
-      <RestaurantDishes ids={dishedIds} />
-      <RestaurantReview ids={reviewIds} onCreateReview={onCreateReview} />
+
+      <div className={styles.restaurantContent}>
+        <ul>
+          <li>
+            <RestaurantNavLink to="dishes" text="Меню" />
+          </li>
+          <li>
+            <RestaurantNavLink to="reviews" text="Отзывы" />
+          </li>
+        </ul>
+
+        <div>
+          <Outlet />
+        </div>
+      </div>
     </div>
   );
 };

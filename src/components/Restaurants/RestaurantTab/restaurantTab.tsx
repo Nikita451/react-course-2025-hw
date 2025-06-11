@@ -1,18 +1,17 @@
 import type { FC } from "react";
 import styles from "../style.module.scss";
 import classNames from "classnames";
-import { Button } from "../../Button";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/store";
-import { getRestaurantById } from "../../../redux/slices/restaurantSlice";
+import { selectRestaurantById } from "../../../redux/slices/restaurantSlice";
+import { RestaurantNavLink } from "../../RestaurantNavLink/restNavLink";
 export interface Props {
   id: string;
-  onSetActiveTab: (id: string) => void;
 }
 
-export const RestaurantTabView: FC<Props> = ({ id, onSetActiveTab }) => {
+export const RestaurantTabView: FC<Props> = ({ id }) => {
   const { name } = useSelector((state: RootState) =>
-    getRestaurantById(state, id)
+    selectRestaurantById(state, id)
   );
   return (
     <li
@@ -20,7 +19,7 @@ export const RestaurantTabView: FC<Props> = ({ id, onSetActiveTab }) => {
         [styles.active]: id === id,
       })}
     >
-      <Button text={name} onClick={() => onSetActiveTab(id)} />
+      <RestaurantNavLink to={id} text={name} />
     </li>
   );
 };
