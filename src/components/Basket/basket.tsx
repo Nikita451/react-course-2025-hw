@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
-import { getBasket } from "../../redux/slices/basketSlice";
+import { selectBasket } from "../../redux/slices/basketSlice";
 
 export function Basket() {
-  const basket = useSelector(getBasket);
+  const basket = useSelector(selectBasket);
 
   return (
     <div>

@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import { RestaurantReview } from "../../components/Restaurants/Review";
 import { useSelector } from "react-redux";
-import { getRestaurantById } from "../../redux/slices/restaurantSlice";
+import { selectRestaurantById } from "../../redux/slices/restaurantSlice";
 import type { RootState } from "../../redux/store";
 
 interface RestaurantReviewProps {
@@ -12,7 +12,7 @@ export const RestaurantReviewContainer: FC<RestaurantReviewProps> = ({
   id,
 }) => {
   const { reviews } = useSelector((state: RootState) =>
-    getRestaurantById(state, id)
+    selectRestaurantById(state, id)
   );
 
   function onCreateReview() {}

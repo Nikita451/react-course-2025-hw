@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { getDishes } from "./dishSlice";
+import { selectDishes } from "./dishSlice";
 
 export interface BasketState {
   ids: Record<string, number>;
@@ -19,8 +19,8 @@ export const basketSlice = createSlice({
   name: "basket",
   initialState,
   selectors: {
-    getBasketIds: (state: BasketState) => state.ids,
-    getBasketCountById: (state: BasketState, id: string) => state.ids[id],
+    selectBasketIds: (state: BasketState) => state.ids,
+    selectBasketCountById: (state: BasketState, id: string) => state.ids[id],
   },
   reducers: {
     addDish(state, action) {
@@ -38,12 +38,12 @@ export const basketSlice = createSlice({
   },
 });
 
-export const { getBasketIds, getBasketCountById } = basketSlice.selectors;
+export const { selectBasketIds, selectBasketCountById } = basketSlice.selectors;
 export const { addDish, removeDish } = basketSlice.actions;
 
-export const getBasket = createSelector(
-  getBasketIds,
-  getDishes,
+export const selectBasket = createSelector(
+  selectBasketIds,
+  selectDishes,
   (basketIds, dishes): BasketInfo[] => {
     return Object.entries(basketIds).map(([id, count]) => {
       return {

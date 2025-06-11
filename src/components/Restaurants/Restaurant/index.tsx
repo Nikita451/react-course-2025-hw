@@ -3,8 +3,9 @@ import styles from "../style.module.scss";
 import { ProgressBar } from "../../ProgressBar";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/store";
-import { getRestaurantById } from "../../../redux/slices/restaurantSlice";
-import { NavLink, Outlet } from "react-router";
+import { selectRestaurantById } from "../../../redux/slices/restaurantSlice";
+import { Outlet } from "react-router";
+import { RestaurantNavLink } from "../../RestaurantNavLink/restNavLink";
 
 interface Props {
   id: string;
@@ -12,7 +13,7 @@ interface Props {
 
 export const RestaurantView: FC<Props> = ({ id }) => {
   const restaurant = useSelector((state: RootState) =>
-    getRestaurantById(state, id)
+    selectRestaurantById(state, id)
   );
   const { name: restaurantName } = restaurant;
 
@@ -24,20 +25,10 @@ export const RestaurantView: FC<Props> = ({ id }) => {
       <div className={styles.restaurantContent}>
         <ul>
           <li>
-            <NavLink
-              to="dishes"
-              className={({ isActive }) => (isActive ? styles.active : "")}
-            >
-              Меню
-            </NavLink>
+            <RestaurantNavLink to="dishes" text="Меню" />
           </li>
           <li>
-            <NavLink
-              to="reviews"
-              className={({ isActive }) => (isActive ? styles.active : "")}
-            >
-              Отзывы
-            </NavLink>
+            <RestaurantNavLink to="reviews" text="Отзывы" />
           </li>
         </ul>
 

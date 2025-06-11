@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import type { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
-import { getRestaurantById } from "../../redux/slices/restaurantSlice";
+import { selectRestaurantById } from "../../redux/slices/restaurantSlice";
 import { RestaurantDishes } from "../../components/Restaurants/Dish";
 
 interface RestaurantDishesProps {
@@ -12,7 +12,7 @@ export const RestaurantDishesContainer: FC<RestaurantDishesProps> = ({
   id,
 }) => {
   const { dishes } = useSelector((state: RootState) =>
-    getRestaurantById(state, id)
+    selectRestaurantById(state, id)
   );
 
   return <RestaurantDishes ids={dishes} />;

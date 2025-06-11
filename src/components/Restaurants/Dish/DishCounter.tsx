@@ -4,7 +4,7 @@ import { CounterView } from "../../Counter/ConterView";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addDish,
-  getBasketCountById,
+  selectBasketCountById,
   removeDish,
 } from "../../../redux/slices/basketSlice";
 import type { RootState } from "../../../redux/store";
@@ -23,20 +23,20 @@ export const DishCounter: FC<Props> = ({ id }) => {
   } = useContext(AuthContext);
 
   const selectedCount = useSelector((state: RootState) =>
-    getBasketCountById(state, id)
+    selectBasketCountById(state, id)
   );
 
+  if (!isAuthorized) {
+    return null;
+  }
+
   return (
-    <>
-      {isAuthorized && (
-        <CounterView
-          onDecrement={() => dispatch(removeDish({ id }))}
-          onIncrement={() => dispatch(addDish({ id }))}
-          count={selectedCount || 0}
-          min={MIN_COUNT}
-          max={MAX_COUNT}
-        />
-      )}
-    </>
+    <CounterView
+      onDecrement={() => dispatch(removeDish({ id }))}
+      onIncrement={() => dispatch(addDish({ id }))}
+      count={selectedCount || 0}
+      min={MIN_COUNT}
+      max={MAX_COUNT}
+    />
   );
 };

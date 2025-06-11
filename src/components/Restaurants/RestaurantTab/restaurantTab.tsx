@@ -3,15 +3,15 @@ import styles from "../style.module.scss";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/store";
-import { getRestaurantById } from "../../../redux/slices/restaurantSlice";
-import { NavLink } from "react-router";
+import { selectRestaurantById } from "../../../redux/slices/restaurantSlice";
+import { RestaurantNavLink } from "../../RestaurantNavLink/restNavLink";
 export interface Props {
   id: string;
 }
 
 export const RestaurantTabView: FC<Props> = ({ id }) => {
   const { name } = useSelector((state: RootState) =>
-    getRestaurantById(state, id)
+    selectRestaurantById(state, id)
   );
   return (
     <li
@@ -19,12 +19,7 @@ export const RestaurantTabView: FC<Props> = ({ id }) => {
         [styles.active]: id === id,
       })}
     >
-      <NavLink
-        to={`${id}`}
-        className={({ isActive }) => (isActive ? styles.active : "")}
-      >
-        {name}
-      </NavLink>
+      <RestaurantNavLink to={id} text={name} />
     </li>
   );
 };

@@ -1,8 +1,8 @@
 import type { FC } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/store";
-import { getReviewById } from "../../../redux/slices/reviewSlice";
-import { getUserById } from "../../../redux/slices/userSlice";
+import { selectReviewById } from "../../../redux/slices/reviewSlice";
+import { selectUserById } from "../../../redux/slices/userSlice";
 
 export interface Prop {
   id: string;
@@ -10,11 +10,11 @@ export interface Prop {
 
 export const ReviewView: FC<Prop> = ({ id }) => {
   const { text, userId } = useSelector((state: RootState) =>
-    getReviewById(state, id)
+    selectReviewById(state, id)
   );
 
   const { name: userName } = useSelector((state: RootState) =>
-    getUserById(state, userId)
+    selectUserById(state, userId)
   );
 
   return (
