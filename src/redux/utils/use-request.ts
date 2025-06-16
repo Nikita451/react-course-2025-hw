@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { selectRequestStatus } from "../slices/request";
+import { selectRequestStatus } from "../entities/request/request";
 import type { AppDispatch, RootState } from "../store";
 import type {
   AsyncThunk,
@@ -24,9 +24,9 @@ type AsyncThunkConfig = {
   rejectedMeta?: unknown;
 };
 
-export function useRequest<T1, T2>(
-  thunk: AsyncThunk<T1, T2, AsyncThunkConfig>,
-  params?: T2
+export function useRequest<ReturnedValue, ThunkArg>(
+  thunk: AsyncThunk<ReturnedValue, ThunkArg, AsyncThunkConfig>,
+  params?: ThunkArg
 ) {
   const dispatch = useDispatch<AppDispatch>();
   const [request, setRequest] = useState<RequestState | null>();
@@ -37,7 +37,7 @@ export function useRequest<T1, T2>(
 
   useEffect(() => {
     // Если параметр объявить как T2 & undefined, то куча ошибок и несовместимоей по типам при использовании хука.
-    const request = dispatch(thunk(params as T2 & undefined));
+    const request = dispatch(thunk(params as ThunkArg & undefined));
 
     setRequest(request);
 

@@ -1,10 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { restaurantSlice } from "./slices/restaurantSlice";
-import { dishSlice } from "./slices/dishSlice";
-import { reviewSlice } from "./slices/reviewSlice";
-import { userSlice } from "./slices/userSlice";
-import { basketSlice } from "./slices/basketSlice";
-import { requestSlice } from "./slices/request";
+import { restaurantSlice } from "./entities/restaurant/restaurantSlice";
+import { dishSlice } from "./entities/dish/dishSlice";
+import { reviewSlice } from "./entities/review/reviewSlice";
+import { userSlice } from "./entities/user/userSlice";
+import { basketSlice } from "./entities/basket/basketSlice";
+import { requestSlice } from "./entities/request/request";
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +15,6 @@ export const store = configureStore({
     [basketSlice.name]: basketSlice.reducer,
     [requestSlice.name]: requestSlice.reducer,
   },
-  middleware: (getDefaultMiddlewares) => getDefaultMiddlewares(),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

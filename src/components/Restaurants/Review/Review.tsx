@@ -1,8 +1,8 @@
 import type { FC } from "react";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/store";
-import { selectReviewById } from "../../../redux/slices/reviewSlice";
-import { selectUserById } from "../../../redux/slices/userSlice";
+import { selectReviewById } from "../../../redux/entities/review/reviewSlice";
+import { selectUserById } from "../../../redux/entities/user/userSlice";
 
 export interface Prop {
   id: string;

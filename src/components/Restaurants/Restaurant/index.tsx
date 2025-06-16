@@ -3,14 +3,12 @@ import styles from "../style.module.scss";
 import { ProgressBar } from "../../ProgressBar";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../redux/store";
-import {
-  getRestaurantById,
-  selectRestaurantById,
-} from "../../../redux/slices/restaurantSlice";
+import { selectRestaurantById } from "../../../redux/entities/restaurant/restaurantSlice";
 import { Outlet } from "react-router";
 import { RestaurantNavLink } from "../../RestaurantNavLink/restNavLink";
 import { useRequest } from "../../../redux/utils/use-request";
 import { StatusWrapper } from "../../StatusWrapper/status-wrapper";
+import { getRestaurantById } from "../../../redux/entities/restaurant/get-restaurants";
 
 interface Props {
   id: string;

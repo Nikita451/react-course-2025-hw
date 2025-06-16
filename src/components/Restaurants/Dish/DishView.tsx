@@ -2,7 +2,7 @@ import { type FC } from "react";
 import styles from "./dish.module.scss";
 import type { RootState } from "../../../redux/store";
 import { useSelector } from "react-redux";
-import { selectDishById } from "../../../redux/slices/dishSlice";
+import { selectDishById } from "../../../redux/entities/dish/dishSlice";
 import { Link } from "react-router";
 import { DishCounter } from "./DishCounter";
 

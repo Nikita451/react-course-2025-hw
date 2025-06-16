@@ -3,13 +3,11 @@ import styles from "./style.module.scss";
 import { RestaurantTabView } from "./RestaurantTab/restaurantTab";
 import type { RootState } from "../../redux/store";
 import { useSelector } from "react-redux";
-import {
-  getRestaurants,
-  selectRestaurantIds,
-} from "../../redux/slices/restaurantSlice";
+import { selectRestaurantIds } from "../../redux/entities/restaurant/restaurantSlice";
 import { Outlet } from "react-router";
 import { useRequest } from "../../redux/utils/use-request";
 import { StatusWrapper } from "../StatusWrapper/status-wrapper";
+import { getRestaurants } from "../../redux/entities/restaurant/get-restaurants";
 
 export const RestaurantList: FC = () => {
   const restaurantIds = useSelector((state: RootState) =>

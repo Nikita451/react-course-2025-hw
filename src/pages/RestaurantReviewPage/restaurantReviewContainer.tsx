@@ -1,15 +1,13 @@
 import type { FC } from "react";
 import { RestaurantReview } from "../../components/Restaurants/Review";
 import { useSelector } from "react-redux";
-import { selectRestaurantById } from "../../redux/slices/restaurantSlice";
+import { selectRestaurantById } from "../../redux/entities/restaurant/restaurantSlice";
 import type { RootState } from "../../redux/store";
 import { useRequest } from "../../redux/utils/use-request";
-import { getReviewsByRestId } from "../../redux/slices/reviewSlice";
-import { getUsers } from "../../redux/slices/userSlice";
-import {
-  combineStatus,
-  StatusWrapper,
-} from "../../components/StatusWrapper/status-wrapper";
+import { StatusWrapper } from "../../components/StatusWrapper/status-wrapper";
+import { combineStatus } from "../../components/StatusWrapper/statusUtils";
+import { getReviewsByRestId } from "../../redux/entities/review/get-review";
+import { getUsers } from "../../redux/entities/user/get-user";
 
 interface RestaurantReviewProps {
   id: string;
