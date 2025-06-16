@@ -9,12 +9,12 @@ export interface Prop {
 }
 
 export const ReviewView: FC<Prop> = ({ id }) => {
-  const { text, userId } = useSelector((state: RootState) =>
-    selectReviewById(state, id)
+  const { text, userId } = useSelector(
+    (state: RootState) => selectReviewById(state, id) || {}
   );
 
-  const { name: userName } = useSelector((state: RootState) =>
-    selectUserById(state, userId)
+  const { name: userName } = useSelector(
+    (state: RootState) => selectUserById(state, userId) || {}
   );
 
   return (

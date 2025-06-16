@@ -1,26 +1,47 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createEntityAdapter,
+  createSlice,
+} from "@reduxjs/toolkit";
 import type { User } from "../../data/types";
-import { normalizedUsers } from "../../data/normalized-mock";
+import type { RootState } from "../store";
 
 export interface UserState {
   ids: string[];
   entities: Record<string, User>;
 }
 
-const initialState: UserState = {
-  ids: normalizedUsers.map(({ id }) => id),
-  entities: normalizedUsers.reduce(
-    (allEntities: Record<string, User>, currentEntity) => {
-      allEntities[currentEntity.id] = currentEntity;
-      return allEntities;
+export const getUsers = createAsyncThunk(
+  "/fetch/users-by-id",
+  async () => {
+    const response = await fetch(`http://localhost:3001/api/users`);
+    const users = await response.json();
+
+    return users;
+  },
+  {
+    condition: (_, { getState }) => {
+      const state: RootState = getState() as RootState;
+      return !selectUserIds(state).length;
     },
-    {}
-  ),
+  }
+);
+
+const initialState: UserState = {
+  ids: [],
+  entities: {},
 };
+
+const entityAdapter = createEntityAdapter();
 
 export const userSlice = createSlice({
   name: "users",
   initialState,
+  extraReducers: (builder) => {
+    builder.addCase(getUsers.fulfilled, (state, action) => {
+      entityAdapter.setAll(state, action.payload);
+    });
+  },
   selectors: {
     selectUserIds: (state: UserState) => state.ids,
     selectUserById: (state, id: string) => state.entities[id],

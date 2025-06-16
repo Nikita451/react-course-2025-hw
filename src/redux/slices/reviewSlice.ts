@@ -1,27 +1,43 @@
-import { createSlice } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createEntityAdapter,
+  createSlice,
+} from "@reduxjs/toolkit";
 import type { ReviewNormalized } from "../../data/types";
-import { normalizedReviews } from "../../data/normalized-mock";
 
 export interface ReviewState {
   ids: string[];
   entities: Record<string, ReviewNormalized>;
 }
 
+export const getReviewsByRestId = createAsyncThunk(
+  "/fetch/review-by-id",
+  async (id: string) => {
+    const response = await fetch(
+      `http://localhost:3001/api/reviews?restaurantId=${id})`
+    );
+    const restaurant = await response.json();
+
+    return restaurant;
+  }
+);
+
 const initialState: ReviewState = {
-  ids: normalizedReviews.map(({ id }) => id),
-  entities: normalizedReviews.reduce(
-    (allEntities: Record<string, ReviewNormalized>, currentEntity) => {
-      allEntities[currentEntity.id] = currentEntity;
-      return allEntities;
-    },
-    {}
-  ),
+  ids: [],
+  entities: {},
 };
+
+const entityAdapter = createEntityAdapter();
 
 export const reviewSlice = createSlice({
   name: "reviews",
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getReviewsByRestId.fulfilled, (state, action) => {
+      entityAdapter.setAll(state, action.payload);
+    });
+  },
   selectors: {
     selectReviewIds: (state: ReviewState) => state.ids,
     selectReviewById: (state, id: string) => state.entities[id],

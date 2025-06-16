@@ -12,7 +12,7 @@ interface Props {
 
 export const DishView: FC<Props> = ({ id }) => {
   const dish = useSelector((state: RootState) => selectDishById(state, id));
-  const { name } = dish;
+  const { name } = dish || {};
 
   return (
     <div className={styles.dish}>

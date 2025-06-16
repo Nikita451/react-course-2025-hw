@@ -4,6 +4,7 @@ import { dishSlice } from "./slices/dishSlice";
 import { reviewSlice } from "./slices/reviewSlice";
 import { userSlice } from "./slices/userSlice";
 import { basketSlice } from "./slices/basketSlice";
+import { requestSlice } from "./slices/request";
 
 export const store = configureStore({
   reducer: {
@@ -12,7 +13,9 @@ export const store = configureStore({
     [reviewSlice.name]: reviewSlice.reducer,
     [userSlice.name]: userSlice.reducer,
     [basketSlice.name]: basketSlice.reducer,
+    [requestSlice.name]: requestSlice.reducer,
   },
+  middleware: (getDefaultMiddlewares) => getDefaultMiddlewares(),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
