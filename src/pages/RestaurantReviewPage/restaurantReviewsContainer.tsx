@@ -13,7 +13,7 @@ interface RestaurantReviewProps {
   id: string;
 }
 
-export const RestaurantReviewContainer: FC<RestaurantReviewProps> = ({
+export const RestaurantReviewsContainer: FC<RestaurantReviewProps> = ({
   id,
 }) => {
   const { reviews } = useSelector((state: RootState) =>
