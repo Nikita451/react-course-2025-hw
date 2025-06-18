@@ -1,19 +1,20 @@
 import { type FC } from "react";
 import { DishView } from "./DishView";
+import type { Dish } from "../../../data/types";
 
 export interface Props {
-  ids: string[];
+  dishes: Dish[] | undefined;
 }
 
-export const RestaurantDishes: FC<Props> = ({ ids }) => {
-  if (!ids?.length) {
+export const RestaurantDishes: FC<Props> = ({ dishes }) => {
+  if (!dishes?.length) {
     return <div>Меню данного ресторана в процессе подготовки</div>;
   }
 
   return (
     <ul>
-      {ids.map((id) => (
-        <DishView key={id} id={id} />
+      {dishes.map((dish) => (
+        <DishView key={dish.id} dish={dish} />
       ))}
     </ul>
   );

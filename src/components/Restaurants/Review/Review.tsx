@@ -1,25 +1,15 @@
 import type { FC } from "react";
-import { useSelector } from "react-redux";
-import type { RootState } from "../../../redux/store";
-import { selectReviewById } from "../../../redux/entities/review/reviewSlice";
-import { selectUserById } from "../../../redux/entities/user/userSlice";
+import type { ReviewNormalized, User } from "../../../data/types";
 
 export interface Prop {
-  id: string;
+  review: ReviewNormalized;
+  user: User;
 }
 
-export const ReviewView: FC<Prop> = ({ id }) => {
-  const { text, userId } = useSelector(
-    (state: RootState) => selectReviewById(state, id) || {}
-  );
-
-  const { name: userName } = useSelector(
-    (state: RootState) => selectUserById(state, userId) || {}
-  );
-
+export const ReviewView: FC<Prop> = ({ review, user }) => {
   return (
     <li>
-      {userName} : {text}
+      {user?.name} : {review.text}
     </li>
   );
 };
