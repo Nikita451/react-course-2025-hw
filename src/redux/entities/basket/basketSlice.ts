@@ -1,5 +1,5 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
-import { selectDishes } from "./dishSlice";
+import { selectDishes } from "../dish/dishSlice";
 
 export interface BasketState {
   ids: Record<string, number>;

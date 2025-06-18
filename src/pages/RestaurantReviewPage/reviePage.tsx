@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { RestaurantReviewContainer } from "./restaurantReviewContainer";
+import { RestaurantReviewsContainer } from "./restaurantReviewsContainer";
 
 export function RestaurantReviewPage() {
   const { restaurantId } = useParams();
@@ -7,5 +7,5 @@ export function RestaurantReviewPage() {
     return null;
   }
 
-  return <RestaurantReviewContainer id={restaurantId} />;
+  return <RestaurantReviewsContainer id={restaurantId} />;
 }

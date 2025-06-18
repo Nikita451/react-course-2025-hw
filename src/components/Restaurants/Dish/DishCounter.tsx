@@ -6,7 +6,7 @@ import {
   addDish,
   selectBasketCountById,
   removeDish,
-} from "../../../redux/slices/basketSlice";
+} from "../../../redux/entities/basket/basketSlice";
 import type { RootState } from "../../../redux/store";
 
 interface Props {

@@ -6,7 +6,7 @@ export interface Props {
 }
 
 export const RestaurantDishes: FC<Props> = ({ ids }) => {
-  if (!ids.length) {
+  if (!ids?.length) {
     return <div>Меню данного ресторана в процессе подготовки</div>;
   }
 
