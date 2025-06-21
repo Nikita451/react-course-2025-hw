@@ -1,18 +1,15 @@
 import { type FC } from "react";
 import styles from "./dish.module.scss";
-import type { RootState } from "../../../redux/store";
-import { useSelector } from "react-redux";
-import { selectDishById } from "../../../redux/entities/dish/dishSlice";
 import { Link } from "react-router";
 import { DishCounter } from "./DishCounter";
+import type { Dish } from "../../../data/types";
 
 interface Props {
-  id: string;
+  dish: Dish;
 }
 
-export const DishView: FC<Props> = ({ id }) => {
-  const dish = useSelector((state: RootState) => selectDishById(state, id));
-  const { name } = dish || {};
+export const DishView: FC<Props> = ({ dish }) => {
+  const { id, name } = dish || {};
 
   return (
     <div className={styles.dish}>

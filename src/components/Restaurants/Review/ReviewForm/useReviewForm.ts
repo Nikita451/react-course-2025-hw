@@ -1,9 +1,11 @@
 import { useMemo, useReducer } from "react";
 
 export interface ReviewCreating {
+  id: string;
   name: string;
   text: string;
   rating: number;
+  userId: string;
 }
 
 export type ReviewHandler = (review: ReviewCreating) => void;
@@ -12,6 +14,8 @@ export const MAX_RATING = 5;
 const INIT_STATE: ReviewCreating = Object.freeze({
   name: "",
   text: "",
+  userId: "",
+  id: "",
   rating: MAX_RATING,
 });
 
@@ -43,8 +47,11 @@ function formReviewReducer(
   }
 }
 
-export function useReviewForm() {
-  const [creatingReview, dispatch] = useReducer(formReviewReducer, INIT_STATE);
+export function useReviewForm(initialState: ReviewCreating = INIT_STATE) {
+  const [creatingReview, dispatch] = useReducer(
+    formReviewReducer,
+    initialState
+  );
 
   const handlers = useMemo(() => {
     return {

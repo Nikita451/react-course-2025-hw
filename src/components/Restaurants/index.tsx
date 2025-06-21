@@ -1,27 +1,23 @@
 import { type FC } from "react";
 import styles from "./style.module.scss";
 import { RestaurantTabView } from "./RestaurantTab/restaurantTab";
-import type { RootState } from "../../redux/store";
-import { useSelector } from "react-redux";
-import { selectRestaurantIds } from "../../redux/entities/restaurant/restaurantSlice";
 import { Outlet } from "react-router";
-import { useRequest } from "../../redux/utils/use-request";
 import { StatusWrapper } from "../StatusWrapper/status-wrapper";
-import { getRestaurants } from "../../redux/entities/restaurant/get-restaurants";
+import { useGetRestaurantsQuery } from "../../redux/api";
 
 export const RestaurantList: FC = () => {
-  const restaurantIds = useSelector((state: RootState) =>
-    selectRestaurantIds(state)
-  );
+  const { data, isFetching, isError } = useGetRestaurantsQuery();
 
-  const requestStatus = useRequest(getRestaurants);
+  if (!data) {
+    return null;
+  }
 
   return (
-    <StatusWrapper status={requestStatus}>
+    <StatusWrapper isError={isError} isFetching={isFetching}>
       <>
         <ul className={styles.tabs}>
-          {restaurantIds.map((id) => (
-            <RestaurantTabView key={id} id={id} />
+          {data.map((restaurant) => (
+            <RestaurantTabView key={restaurant.id} restaurant={restaurant} />
           ))}
         </ul>
         <Outlet />

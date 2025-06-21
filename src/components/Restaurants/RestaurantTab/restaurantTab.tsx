@@ -1,18 +1,19 @@
 import type { FC } from "react";
 import styles from "../style.module.scss";
 import classNames from "classnames";
-import { useSelector } from "react-redux";
-import type { RootState } from "../../../redux/store";
-import { selectRestaurantById } from "../../../redux/entities/restaurant/restaurantSlice";
 import { RestaurantNavLink } from "../../RestaurantNavLink/restNavLink";
+import type { RestaurantNormalized } from "../../../data/types";
+
 export interface Props {
-  id: string;
+  restaurant: RestaurantNormalized;
 }
 
-export const RestaurantTabView: FC<Props> = ({ id }) => {
-  const { name } = useSelector((state: RootState) =>
-    selectRestaurantById(state, id)
-  );
+export const RestaurantTabView: FC<Props> = ({ restaurant }) => {
+  if (!restaurant) {
+    return null;
+  }
+
+  const { id, name } = restaurant;
   return (
     <li
       className={classNames({

@@ -1,29 +1,25 @@
 import { type FC } from "react";
 import styles from "../style.module.scss";
 import { ProgressBar } from "../../ProgressBar";
-import { useSelector } from "react-redux";
-import type { RootState } from "../../../redux/store";
-import { selectRestaurantById } from "../../../redux/entities/restaurant/restaurantSlice";
 import { Outlet } from "react-router";
 import { RestaurantNavLink } from "../../RestaurantNavLink/restNavLink";
-import { useRequest } from "../../../redux/utils/use-request";
 import { StatusWrapper } from "../../StatusWrapper/status-wrapper";
-import { getRestaurantById } from "../../../redux/entities/restaurant/get-restaurants";
+import { useGetRestaurantByIdQuery } from "../../../redux/api";
 
 interface Props {
   id: string;
 }
 
 export const RestaurantView: FC<Props> = ({ id }) => {
-  const restaurant = useSelector((state: RootState) =>
-    selectRestaurantById(state, id)
-  );
+  const {
+    data: restaurant,
+    isError,
+    isFetching,
+  } = useGetRestaurantByIdQuery(id);
   const { name: restaurantName } = restaurant || {};
 
-  const requestStatus = useRequest(getRestaurantById, id);
-
   return (
-    <StatusWrapper status={requestStatus}>
+    <StatusWrapper isError={isError} isFetching={isFetching}>
       <div className={styles.restaurant}>
         <ProgressBar />
         <h2>{restaurantName}</h2>

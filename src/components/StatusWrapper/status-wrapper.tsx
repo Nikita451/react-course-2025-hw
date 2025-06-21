@@ -1,22 +1,19 @@
 import type { FC, JSX } from "react";
-import {
-  IDLE,
-  PENDING,
-  REJECTED,
-  type RequestStatus,
-} from "../../redux/entities/request/request";
+import { type RequestStatus } from "../../redux/entities/request/request";
 
 export interface Props {
-  status: RequestStatus;
+  status?: RequestStatus;
   children: JSX.Element;
+  isFetching?: boolean;
+  isError?: boolean;
 }
 
-export const StatusWrapper: FC<Props> = ({ status, children }) => {
-  if (status === IDLE || status === PENDING) {
+export const StatusWrapper: FC<Props> = ({ isError, isFetching, children }) => {
+  if (isFetching) {
     return "Loading...";
   }
 
-  if (status === REJECTED) {
+  if (isError) {
     return "Error...";
   }
 

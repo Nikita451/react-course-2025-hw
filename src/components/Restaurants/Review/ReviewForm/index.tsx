@@ -1,24 +1,29 @@
 import { type FormEvent } from "react";
-import { useReviewForm, type ReviewHandler } from "./useReviewForm";
+import {
+  useReviewForm,
+  type ReviewCreating,
+  type ReviewHandler,
+} from "./useReviewForm";
 import { CounterView } from "../../../Counter/ConterView";
 import styles from "./reviewForm.module.scss";
 import { Button } from "../../../Button";
 
 export interface Props {
   onCreateReview: ReviewHandler;
+  initialState?: ReviewCreating;
 }
 
 const MIN_RATING = 1;
 const MAX_RATING = 5;
 
-export const ReviewForm = ({ onCreateReview }: Props) => {
+export const ReviewForm = ({ onCreateReview, initialState }: Props) => {
   const {
     creatingReview,
     onNameChange,
     onClear,
     onRatingChange,
     onTextChange,
-  } = useReviewForm();
+  } = useReviewForm(initialState);
 
   const { rating, name, text } = creatingReview;
 
