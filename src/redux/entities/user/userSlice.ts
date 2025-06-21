@@ -32,10 +32,10 @@ export const selectUsersById = createSelector(
     if (!users?.length) {
       return {};
     }
-    return users.reduce((usersById, user) => {
+    return users.reduce<Record<string, User>>((usersById, user) => {
       usersById[user.id] = user;
       return usersById;
-    }, {} as Record<string, User>);
+    }, {});
   }
 );
 
