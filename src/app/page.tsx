@@ -1,10 +1,10 @@
-import { Link } from "react-router";
+import Link from "next/link";
 import styles from "./home.module.scss";
 
-export function HomePage() {
+export default function HomePage() {
   return (
     <div className={styles.homePage}>
-      <Link to="restaurants">К ресторанам</Link> <br />
+      <Link href="restaurants">К ресторанам</Link> <br />
       Добро пожаловать на сайт «Агрегатор Ресторанов» — ваш надежный гид в мире
       вкусной еды! <br />
       --- Поиск ресторана --- <br />
@@ -22,7 +22,7 @@ export function HomePage() {
       Преимущества сервиса - Простота заказа онлайн - Широкий выбор ресторанов -
       Быстрая доставка - Удобный интерфейс --- Контакты и поддержка 📞 +7 (495)
       123-45-67 📧 info@agregator.ru 🏠 Москва, ул. Тверская, д. 10 <br />
-      <Link to="restaurants">К ресторанам</Link>
+      <Link href="restaurants">К ресторанам</Link>
     </div>
   );
 }

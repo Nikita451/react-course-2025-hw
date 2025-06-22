@@ -1,17 +1,18 @@
+"use client";
 import type { FC } from "react";
-import { RestaurantReview } from "../../components/Restaurants/Review";
+import { RestaurantReview } from ".";
 import { useSelector } from "react-redux";
-import { StatusWrapper } from "../../components/StatusWrapper/status-wrapper";
+import { StatusWrapper } from "../../StatusWrapper/status-wrapper";
 import {
   useAddReviewMutation,
   useGetReviewsByRestIdQuery,
   useGetUsersQuery,
   useUpdateReviewMutation,
   type ReviewAction,
-} from "../../redux/api";
-import type { User } from "../../data/types";
-import type { ReviewCreating } from "../../components/Restaurants/Review/ReviewForm/useReviewForm";
-import { selectUsersById } from "../../redux/entities/user/userSlice";
+} from "../../../redux/api";
+import type { User } from "../../../data/types";
+import type { ReviewCreating } from "./ReviewForm/useReviewForm";
+import { selectUsersById } from "../../../redux/entities/user/userSlice";
 
 interface RestaurantReviewProps {
   id: string;

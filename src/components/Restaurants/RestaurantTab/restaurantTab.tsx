@@ -1,7 +1,7 @@
 import type { FC } from "react";
 import styles from "../style.module.scss";
 import classNames from "classnames";
-import { RestaurantNavLink } from "../../RestaurantNavLink/restNavLink";
+import RestaurantNavLink from "../../RestaurantNavLink/restNavLink";
 import type { RestaurantNormalized } from "../../../data/types";
 
 export interface Props {

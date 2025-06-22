@@ -1,3 +1,4 @@
+"use client";
 import { useState, type FC, type JSX } from "react";
 import { AuthContext } from "./authContext";
 

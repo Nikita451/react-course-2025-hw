@@ -1,3 +1,4 @@
+"use client";
 import { type FC } from "react";
 import styles from "./dish.module.scss";
 import { DishCounter } from "./DishCounter";

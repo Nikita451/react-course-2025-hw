@@ -1,3 +1,4 @@
+"use client";
 import { type FC, type JSX, useState } from "react";
 import { DEFAULT_THEME, ThemeContext } from "./themeContext";
 
