@@ -1,14 +1,20 @@
 import styles from "./layout.module.scss";
 import { Footer } from "./Footer/Footer";
 import { Header } from "./Header/header";
-import { Outlet } from "react-router";
+import { FC, ReactElement } from "react";
 
-export function Layout() {
+interface Props {
+  children: ReactElement;
+}
+
+const Layout: FC<Props> = ({ children }) => {
   return (
     <div className={styles.layout}>
       <Header />
-      <Outlet />
+      {children}
       <Footer />
     </div>
   );
-}
+};
+
+export default Layout;

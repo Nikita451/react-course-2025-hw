@@ -1,7 +1,8 @@
+"use client";
 import type { FC } from "react";
-import { RestaurantDishes } from "../../components/Restaurants/Dish";
-import { StatusWrapper } from "../../components/StatusWrapper/status-wrapper";
-import { useGetDishesByRestIdQuery } from "../../redux/api";
+import { RestaurantDishes } from ".";
+import { StatusWrapper } from "../../StatusWrapper/status-wrapper";
+import { useGetDishesByRestIdQuery } from "../../../redux/api";
 
 interface RestaurantDishesProps {
   id: string;

@@ -1,16 +1,17 @@
-import { type FC } from "react";
+"use client";
+import React, { type FC } from "react";
 import styles from "../style.module.scss";
 import { ProgressBar } from "../../ProgressBar";
-import { Outlet } from "react-router";
-import { RestaurantNavLink } from "../../RestaurantNavLink/restNavLink";
+import RestaurantNavLink from "../../RestaurantNavLink/restNavLink";
 import { StatusWrapper } from "../../StatusWrapper/status-wrapper";
 import { useGetRestaurantByIdQuery } from "../../../redux/api";
 
 interface Props {
   id: string;
+  children: React.JSX.Element;
 }
 
-export const RestaurantView: FC<Props> = ({ id }) => {
+export const RestaurantView: FC<Props> = ({ id, children }) => {
   const {
     data: restaurant,
     isError,
@@ -34,9 +35,7 @@ export const RestaurantView: FC<Props> = ({ id }) => {
             </li>
           </ul>
 
-          <div>
-            <Outlet />
-          </div>
+          <div>{children}</div>
         </div>
       </div>
     </StatusWrapper>

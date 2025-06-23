@@ -1,0 +1,53 @@
+.restaurant {
+  border: 1px solid #4f4f4f;
+  border-radius: 4px;
+  padding: 5px;
+  margin: 5px;
+  background: #f4f4f4;
+
+  .restaurantContent {
+    display: flex;
+  }
+
+  h2 {
+    color: #4f4f4f;
+    text-align: center;
+  }
+
+  h3 {
+    color: #4f4f4f;
+    text-align: center;
+    font-style: italic;
+  }
+
+  ul li {
+    list-style-type: none;
+
+    a {
+      padding: 5px;
+      font-size: 2rem;
+      text-decoration: none;
+      color: #4f4f4f;
+      font-style: italic;
+    }
+  }
+}
+
+.tabs {
+  display: flex;
+
+  li {
+    list-style-type: none;
+    padding: 5px;
+    font-size: 1.5rem;
+    font-style: italic;
+
+    a {
+      color: #4f4f4f;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

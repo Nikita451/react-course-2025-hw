@@ -1,11 +1,14 @@
-import { type FC } from "react";
+import { ReactElement, type FC } from "react";
 import styles from "./style.module.scss";
 import { RestaurantTabView } from "./RestaurantTab/restaurantTab";
-import { Outlet } from "react-router";
 import { StatusWrapper } from "../StatusWrapper/status-wrapper";
 import { useGetRestaurantsQuery } from "../../redux/api";
 
-export const RestaurantList: FC = () => {
+interface Props {
+  children: ReactElement;
+}
+
+export const RestaurantList: FC<Props> = ({ children }) => {
   const { data, isFetching, isError } = useGetRestaurantsQuery();
 
   if (!data) {
@@ -20,7 +23,7 @@ export const RestaurantList: FC = () => {
             <RestaurantTabView key={restaurant.id} restaurant={restaurant} />
           ))}
         </ul>
-        <Outlet />
+        {children}
       </>
     </StatusWrapper>
   );

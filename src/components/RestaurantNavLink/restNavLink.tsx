@@ -1,19 +1,28 @@
+"use client";
 import type { FC } from "react";
-import { NavLink } from "react-router";
 import styles from "./restNavLink.style.module.scss";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import classNames from "classnames";
 
 interface Props {
   to: string;
   text: string;
 }
 
-export const RestaurantNavLink: FC<Props> = ({ to, text }) => {
+const RestaurantNavLink: FC<Props> = ({ to, text }) => {
+  const pathname = usePathname();
+  const link = `/restaurants/${to}`;
   return (
-    <NavLink
-      to={to}
-      className={({ isActive }) => (isActive ? styles.active : "")}
+    <Link
+      className={classNames({
+        [styles.active]: link === pathname,
+      })}
+      href={link}
     >
       {text}
-    </NavLink>
+    </Link>
   );
 };
+
+export default RestaurantNavLink;
