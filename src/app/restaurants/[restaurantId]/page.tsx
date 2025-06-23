@@ -8,7 +8,7 @@ interface Props {
   children: React.JSX.Element;
 }
 
-const RestId = async ({ params }: Props) => {
+const DishesByRestId = async ({ params }: Props) => {
   const { restaurantId } = await params;
   if (!restaurantId) {
     return null;
@@ -17,4 +17,4 @@ const RestId = async ({ params }: Props) => {
   return <RestaurantDishesContainer id={restaurantId} />;
 };
 
-export default RestId;
+export default DishesByRestId;

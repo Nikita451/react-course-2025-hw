@@ -8,7 +8,7 @@ interface Props {
   children: ReactElement;
 }
 
-const RestReviewPage = async ({ params }: Props) => {
+const RestDishPage = async ({ params }: Props) => {
   const { dishId } = await params;
   if (!dishId) {
     return null;
@@ -17,4 +17,4 @@ const RestReviewPage = async ({ params }: Props) => {
   return <DishDetailView id={dishId} />;
 };
 
-export default RestReviewPage;
+export default RestDishPage;

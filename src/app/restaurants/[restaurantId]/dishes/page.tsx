@@ -1,3 +1,3 @@
-export default function RestaurantDishesPage() {
-  return <div>dishes</div>;
-}
+import DishesByRestId from "../page";
+
+export default DishesByRestId;

@@ -17,7 +17,7 @@ export default function RootLayout({
         <link rel="icon" type="image/svg+xml" href="/vite.svg" />
       </head>
       <body>
-        <div id="root">{children}</div>
+        <div>{children}</div>
       </body>
     </html>
   );
